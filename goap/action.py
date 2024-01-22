@@ -21,6 +21,8 @@ class ActionValidator(type):
 
     def __new__(mcs, cls_name: str, bases: Tuple[type], attrs: Dict[str, Any]):
         if bases:
+        	if cost:
+            	cost = attrs.get("cost", {})
             # Validate precondition plugins
             preconditions = attrs.get("preconditions", {})
             # Overwrite effect plugins to ellipsis
@@ -48,11 +50,12 @@ class ActionValidator(type):
 
 
 class Action(metaclass=ActionValidator):
+
     effects: ClassVar[State] = {}
     preconditions: ClassVar[State] = {}
     service_names: ClassVar[List[str]] = []
-
-    cost = 1.0
+	cost: ClassVar[float] = 1
+	
     precedence = 0.0
     apply_effects_on_exit = True
 

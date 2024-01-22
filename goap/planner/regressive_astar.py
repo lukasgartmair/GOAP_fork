@@ -38,6 +38,7 @@ class RegressiveGOAPAStarNode:
     def compute_cost(self, other: "RegressiveGOAPAStarNode") -> float:
         # The action determines the cost, and is stored on the "destination" node
         # i.e. x -- action --> y is encoded as (x, None), (y, action)
+        print(other.action.get_cost(other.services))
         return other.action.get_cost(other.services)
 
     def apply_action(
