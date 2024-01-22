@@ -21,8 +21,6 @@ class ActionValidator(type):
 
     def __new__(mcs, cls_name: str, bases: Tuple[type], attrs: Dict[str, Any]):
         if bases:
-        	if cost:
-            	cost = attrs.get("cost", {})
             # Validate precondition plugins
             preconditions = attrs.get("preconditions", {})
             # Overwrite effect plugins to ellipsis
